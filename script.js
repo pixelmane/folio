@@ -14,6 +14,10 @@ fetchName(ticker)
 fetchPrice(ticker)
 fetchNews(ticker)
 fetchRatings(ticker)
+month.style.opacity = '.2'
+    annual.style.opacity = '.2'
+    daily.style.opacity = '.7'
+    weekly.style.opacity = '.2'
 })
 
 symbol.addEventListener('keypress', function onkeydown(event){
@@ -47,7 +51,7 @@ function fetchPrice(ticker) {
         console.log(data);
         var current = data.c
         current = +current.toFixed(2)
-        priceNow.innerHTML = `${current}`
+        priceNow.innerHTML = `$${current}`
         let change = data.d;
         change = +change.toFixed(2)
         let percentChange = data.dp;
@@ -84,6 +88,67 @@ function fetchPrice(ticker) {
         
     }).catch( error => {
         console.log(error)
+    })
+}
+month.addEventListener('click', function onClick() {
+    var ticker = selectedTicker.value;
+    ticker = ticker.toUpperCase()
+    fetchPrices(ticker, '13WeekPriceReturnDaily')
+    daily.style.opacity = '.2'
+    annual.style.opacity = '.2'
+    weekly.style.opacity = '.2'
+    this.style.opacity = '.7'
+})
+weekly.addEventListener('click', function onClick() {
+    var ticker = selectedTicker.value;
+    ticker = ticker.toUpperCase()
+    fetchPrices(ticker, '5DayPriceReturnDaily')
+    daily.style.opacity = '.2'
+    annual.style.opacity = '.2'
+    month.style.opacity = '.2'
+    this.style.opacity = '.7'
+})
+annual.addEventListener('click', function onClick() {
+    var ticker = selectedTicker.value;
+    ticker = ticker.toUpperCase()
+    fetchPrices(ticker, '52WeekPriceReturnDaily')
+    daily.style.opacity = '.2'
+    month.style.opacity = '.2'
+    this.style.opacity = '.7'
+    weekly.style.opacity = '.2'
+})
+daily.addEventListener('click', function onClick() {
+    var ticker = selectedTicker.value;
+    ticker = ticker.toUpperCase()
+    fetchPrice(ticker)
+    month.style.opacity = '.2'
+    annual.style.opacity = '.2'
+    this.style.opacity = '.7'
+    weekly.style.opacity = '.2'
+})
+function fetchPrices(ticker,period) {
+    fetch(`${baseUrl}/stock/metric?symbol=${ticker}&metric=all${token}`).then(response => {
+        return response.json();
+    }).then(data => {
+        var periodReturn = data.metric[period];
+        var oldPrice = currPrice/(1+(periodReturn/100))
+        var priceDiff = currPrice - oldPrice;
+        priceDiff = +priceDiff.toFixed(2)
+        periodReturn = +periodReturn.toFixed(2);
+        console.log(currPrice)
+        console.log(periodReturn)
+        console.log(oldPrice)
+        console.log(priceDiff)
+        if (priceDiff > 0){
+            dayChange.style.color = 'green';
+            dayChange.innerHTML = `+${priceDiff} (${periodReturn}%)`
+        } else if (priceDiff < 0) {
+            dayChange.style.color = 'red';
+            dayChange.innerHTML = `${priceDiff} (${periodReturn}%)`
+        } else {
+            dayChange.style.color = 'grey';
+            dayChange.innerHTML = `${priceDiff} ${periodReturn}%`
+        }
     })
 }
 function fetchRatings(ticker) {
