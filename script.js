@@ -86,44 +86,6 @@ function fetchPrice(ticker) {
         console.log(error)
     })
 }
-
-function fetchNews(ticker) {
-    console.log(fetchNews);
-    const date = new Date();
-    let year = date.getFullYear();
-    let month = date.getMonth() + 1;
-    let lastMonth = date.getMonth();
-    let day = date.getDate();
-    if (month < 10){
-        month = `0${month}`
-    } else {
-        month = month;
-    }
-    if (lastMonth < 10){
-        lastMonth = `0${lastMonth}`
-    } else {
-        lastMonth = lastMonth;
-    }
-    if(day <10) {
-        day = `0${day}`;
-    } else {
-        day = day;
-    }
-console.log(month)
-    fetch(`${baseUrl}/company-news?symbol=${ticker}&from=${year}-${lastMonth}-${day}&to=${year}-${month}-${day}&metric=all${token}`).then(response => {
-        return response.json();
-    }).then(data => {
-        console.log(data); 
-        newsBox.innerHTML = `<p><a href=${data[0].url}>${data[0].headline}</a></p>
-                            <p><a href=${data[1].url}>${data[1].headline}</a></p>
-                            <p><a href=${data[2].url}>${data[2].headline}</a></p>
-                            <p><a href=${data[3].url}>${data[3].headline}</a></p>
-                            <p><a href=${data[4].url}>${data[4].headline}</a></p>
-                            <p><a href=${data[5].url}>${data[5].headline}</a></p>`
-        
-    })
-}
-
 function fetchRatings(ticker) {
     console.log('fetchingRatings');
     fetch(`${baseUrl}/stock/recommendation?symbol=${ticker}${token}`).then(response => {
@@ -167,4 +129,42 @@ function fetchRatings(ticker) {
         lastStrongSell.innerHTML = `<p>${data[3].strongSell}</p>`
     })
 }
+
+function fetchNews(ticker) {
+    console.log(fetchNews);
+    const date = new Date();
+    let year = date.getFullYear();
+    let month = date.getMonth() + 1;
+    let lastMonth = date.getMonth();
+    let day = date.getDate();
+    if (month < 10){
+        month = `0${month}`
+    } else {
+        month = month;
+    }
+    if (lastMonth < 10){
+        lastMonth = `0${lastMonth}`
+    } else {
+        lastMonth = lastMonth;
+    }
+    if(day <10) {
+        day = `0${day}`;
+    } else {
+        day = day;
+    }
+console.log(month)
+    fetch(`${baseUrl}/company-news?symbol=${ticker}&from=${year}-${lastMonth}-${day}&to=${year}-${month}-${day}&metric=all${token}`).then(response => {
+        return response.json();
+    }).then(data => {
+        console.log(data); 
+        newsBox.innerHTML = `<p><a href=${data[0].url}>${data[0].headline}</a></p>
+                            <p><a href=${data[1].url}>${data[1].headline}</a></p>
+                            <p><a href=${data[2].url}>${data[2].headline}</a></p>
+                            <p><a href=${data[3].url}>${data[3].headline}</a></p>
+                            <p><a href=${data[4].url}>${data[4].headline}</a></p>
+                            <p><a href=${data[5].url}>${data[5].headline}</a></p>`
+        
+    })
+}
+
 
