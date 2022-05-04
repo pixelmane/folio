@@ -13,6 +13,7 @@ ticker = ticker.toUpperCase()
 fetchName(ticker)
 fetchPrice(ticker)
 fetchNews(ticker)
+fetchRatings(ticker)
 })
 
 symbol.addEventListener('keypress', function onkeydown(event){
@@ -120,6 +121,50 @@ console.log(month)
                             <p><a href=${data[4].url}>${data[4].headline}</a></p>
                             <p><a href=${data[5].url}>${data[5].headline}</a></p>`
         
+    })
+}
+
+function fetchRatings(ticker) {
+    console.log('fetchingRatings');
+    fetch(`${baseUrl}/stock/recommendation?symbol=${ticker}${token}`).then(response => {
+        return response.json();
+    }).then(data => {
+        console.log(data)
+        let currentDenominator = Math.max(data[0].strongBuy,data[0].buy,data[0].hold,data[0].sell,data[0].strongSell)
+        currentStrongBuyWidth = data[0].strongBuy/currentDenominator*100
+        currentBuyWidth = data[0].buy/currentDenominator*100
+        currentHoldWidth = data[0].hold/currentDenominator*100
+        currentSellWidth = data[0].sell/currentDenominator*100
+        currentStrongSellWidth = data[0].strongSell/currentDenominator*100
+        console.log(currentStrongBuyWidth)
+        currentStrongBuy.style.width = `${currentStrongBuyWidth}%`
+        currentStrongBuy.innerHTML = `<p>${data[0].strongBuy}</p>`
+        currentBuy.style.width = `${currentBuyWidth}%`
+        currentBuy.innerHTML = `<p>${data[0].buy}</p>`
+        currentHold.style.width = `${currentHoldWidth}%`
+        currentHold.innerHTML = `<p>${data[0].hold}</p>`
+        currentSell.style.width = `${currentSellWidth}%`
+        currentSell.innerHTML = `<p>${data[0].sell}</p>`
+        currentStrongSell.style.width = `${currentStrongSellWidth}%`
+        currentStrongSell.innerHTML = `<p>${data[0].strongSell}</p>`
+
+        let lastDenominator = Math.max(data[3].strongBuy,data[3].buy,data[3].hold,data[3].sell,data[3].strongSell)
+        lastStrongBuyWidth = data[3].strongBuy/lastDenominator*100
+        lastBuyWidth = data[3].buy/lastDenominator*100
+        lastHoldWidth = data[3].hold/lastDenominator*100
+        lastSellWidth = data[3].sell/lastDenominator*100
+        lastStrongSellWidth = data[3].strongSell/lastDenominator*100
+        console.log(lastStrongBuyWidth)
+        lastStrongBuy.style.width = `${lastStrongBuyWidth}%`
+        lastStrongBuy.innerHTML = `<p>${data[3].strongBuy}</p>`
+        lastBuy.style.width = `${lastBuyWidth}%`
+        lastBuy.innerHTML = `<p>${data[3].buy}</p>`
+        lastHold.style.width = `${lastHoldWidth}%`
+        lastHold.innerHTML = `<p>${data[3].hold}</p>`
+        lastSell.style.width = `${lastSellWidth}%`
+        lastSell.innerHTML = `<p>${data[3].sell}</p>`
+        lastStrongSell.style.width = `${lastStrongSellWidth}%`
+        lastStrongSell.innerHTML = `<p>${data[3].strongSell}</p>`
     })
 }
 
