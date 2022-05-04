@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="style.css" rel="stylesheet">
+    <link href="/style.css" rel="stylesheet">
     
     <title>folio</title>
 </head>
@@ -12,32 +12,65 @@
     <header>
         <h1 id="title">folio</h1>
         <div id="symbolCont">
-            <input type="text" id="symbol"><div id="imageCont"><img id="myImage" src="searchlogo.png" width=100% height=100%></div>
+            <input type="text" id="symbol"><div id="imageCont"><img id="myImage" src="/searchlogo.png" width=100% height=100%></div>
         </div>
     </header>
     <main>
         <div id="mainCont">
             <div id="compName">
                 <div id="logoCont"></div><div id="nameCont"></div>
-            </div>
+           
             <div id="perfCont">
                 <h1 id="priceNow"></h1><h2 id="dayChange"></h2>
             </div>
+            </div>
             <div id="rangeCont">
-                <h2 class="title">52 Week Range:</h2>
+                <h3 class="title">52 Week Range:</h3>
                 <h5 id="low">10.42</h5><h5 id="high">24.32</h5>
                 <div id="priceBar">
                     <div id="currentPrice">$19.42</div>
                 </div>
             </div>
+            <div id="ratingsCont">
+                <h3 class="title">Rating Changes:</h3>
+                <div id="ratingsGrid">
+                    <div id="currentRating">
+                        <div style="text-align:start; color:black" >Current</div>
+                        <div id="currentStrongBuy"></div>
+                        <div id="currentBuy"></div>
+                        <div id="currentHold"></div>
+                        <div id="currentSell"></div>
+                        <div id="currentStrongSell"></div>
+                    </div>
+                    <div id="rating">
+                        <div style="text-align:center; color:black" >Rating</div>
+                        <p style="background-color: green; border: 3px solid green; height: fit-content">Strong Buy</p>
+                        <p style="background-color: lightgreen; border: 3px solid lightgreen; height: fit-content">Buy</p>
+                        <p style="background-color: grey; border: 3px solid grey; height: fit-content">Hold</p>
+                        <p style="background-color: pink; border: 3px solid pink; height: fit-content">Sell</p>
+                        <p style="background-color: red; border: 3px solid red;height: fit-content">Strong Sell</p>
+                    </div>
+                    <div id="lastQuarter">
+                        <div style="text-align:end; color:black" >Last Qtr</div>
+                        <div id="lastStrongBuy"></div>
+                        <div id="lastBuy"></div>
+                        <div id="lastHold"></div>
+                        <div id="lastSell"></div>
+                        <div id="lastStrongSell"></div>
+                    </div>
+                </div>
+                 
+            </div>
+            
             <div id="newsCont">
-                <h2 class="title">Recent News:</h2>
+                <h3 class="title">Recent News:</h3>
                 <div id="newsBox">
-                    
+
                 </div>
             </div>
+            
         </div>
     </main>
-    <script src="script.js" ></script>
+    <script src="/script.js" ></script>
 </body>
 </html>
