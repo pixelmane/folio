@@ -132,8 +132,14 @@ input {
 }
 #removeMe h3 {
     position: absolute;
-    color: black;
-    margin-left: 35px;
+    top: 37px;
+    background-color: white;
+    border: 3px solid black;
+    width: auto;
+    height: 20px;
+    color: darkgray;
+    margin-left: 45px;
+    padding: 2px 5px;
 }
 #removeMe {
     position: relative;
