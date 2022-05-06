@@ -1,19 +1,29 @@
+
 const baseUrl = 'https://finnhub.io/api/v1';
 const query = '/stock/recommendation?symbol=AAPL';
 const quoteQuery = '/quote?symbol=AAPL';
 const token = '&token=c9jdddaad3idg7p58lkg';
 
 
+         
 
 const entry = document.getElementById('imageCont');
 const selectedTicker = document.getElementById('symbol')
 entry.addEventListener('click', function onClick(){
 var ticker = selectedTicker.value;
 ticker = ticker.toUpperCase()
+//to remove old canavas and allow for new chart
+var oldcanv = document.getElementById('myChart');
+removeMe.removeChild(oldcanv)
+var newCanv = document.createElement('canvas');
+newCanv.id = 'myChart';
+removeMe.appendChild(newCanv)
 fetchName(ticker)
 fetchPrice(ticker)
 fetchNews(ticker)
 fetchRatings(ticker)
+fetchYearlyChart(ticker)
+
 month.style.opacity = '.2'
     annual.style.opacity = '.2'
     daily.style.opacity = '.7'
