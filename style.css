@@ -127,6 +127,23 @@ input {
     color: white;
     text-align: center;
 }
+#myChart {
+   
+}
+#removeMe h3 {
+    position: absolute;
+    color: black;
+    margin-left: 35px;
+}
+#removeMe {
+    position: relative;
+    height: 250px;
+    /*border: 5px solid yellow;*/
+   
+    width: 100%;
+    
+    
+}
 #period {
     display: flex;
     width: 100%;
@@ -229,6 +246,7 @@ input {
 }
 #newsBox a {
     color: yellow;
+    
 }
 #ratingsCont {
     display: flex;
