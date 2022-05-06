@@ -139,8 +139,8 @@ input {
     position: relative;
     height: 250px;
     /*border: 5px solid yellow;*/
-   
-    width: 100%;
+   margin: 0 auto;
+    width: 90%;
     
     
 }
